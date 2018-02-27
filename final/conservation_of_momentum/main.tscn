@@ -113,7 +113,7 @@ __meta__ = {
 
 [node name="sun" type="Sprite" parent="background_layer" index="1"]
 
-position = Vector2( 172, 294 )
+position = Vector2( 172, 204 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
@@ -361,7 +361,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 [node name="plane" type="Node2D" parent="." index="1"]
 
 editor/display_folded = true
-position = Vector2( 100, 300 )
+position = Vector2( 100, 100 )
 script = ExtResource( 9 )
 _sections_unfolded = [ "Transform" ]
 
@@ -409,7 +409,7 @@ blend_times = [  ]
 
 [node name="target" type="Node2D" parent="." index="2"]
 
-position = Vector2( 259.28, 421.745 )
+position = Vector2( 260, 440 )
 script = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 

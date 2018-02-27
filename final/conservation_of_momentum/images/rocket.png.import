@@ -7,7 +7,7 @@ path="res://.import/rocket.png-03730b08f0c1ecafca3f023324bbc4a0.stex"
 [deps]
 
 source_file="res://images/rocket.png"
-source_md5="4ad0db0b49a3a804b8fcba93ffe22504"
+source_md5="313c7efd28226a39bdce870024ea11bb"
 
 dest_files=[ "res://.import/rocket.png-03730b08f0c1ecafca3f023324bbc4a0.stex" ]
 dest_md5="33d61ac05d39d7c0374b2b323dee3b3d"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://images/rocket.png" type="Texture" id=1]
-[ext_resource path="res://rocket.gd" type="Script" id=2]
+[ext_resource path="res://rocket.gd" type="Script" id=1]
+[ext_resource path="res://images/rocket.png" type="Texture" id=2]
 [ext_resource path="res://images/explosion.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -23,27 +23,27 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
 
-[node name="rocket" type="Sprite"]
+[node name="rocket" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="rocket" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 2, 2 )
-texture = ExtResource( 1 )
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="explosion" type="Sprite" parent="." index="0"]
+[node name="explosion" type="Sprite" parent="." index="1"]
 
 visible = false
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 4
 frame = 15
 _sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
 root_node = NodePath("..")
 autoplay = ""

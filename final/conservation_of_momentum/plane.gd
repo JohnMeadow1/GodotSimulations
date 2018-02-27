@@ -32,21 +32,15 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("release_rocket"):
 		release_rocket()
-	
-#	if event is InputEventMouseButton:
-#		print("Mouse Click/Unclick at: ", event.position)
-#	elif event is InputEventMouseMotion:
-#		print("Mouse Motion at: ", event.position)
 
 func release_rocket():
 	if mass > mass_rocket:
 		var new_rocket      = rocket_object.instance()
 		new_rocket.velocity = velocity + shoot_velocity * velocity.normalized()
 		new_rocket.position = position + rocket_spawn_offset
-		new_rocket.scale    = $plane.scale
 		
 		mass               -= mass_rocket
-		velocity            = velocity - (mass_rocket / mass) * (shoot_velocity * velocity.normalized())
+		velocity           -= (mass_rocket / mass) * (shoot_velocity * velocity.normalized())
 	
 		get_parent().add_child( new_rocket )
 		
