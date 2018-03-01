@@ -1,0 +1,423 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://images/background.png" type="Texture" id=1]
+[ext_resource path="res://images/sun.png" type="Texture" id=2]
+[ext_resource path="res://images/cloud4.png" type="Texture" id=3]
+[ext_resource path="res://images/cloud3.png" type="Texture" id=4]
+[ext_resource path="res://images/cloud2.png" type="Texture" id=5]
+[ext_resource path="res://images/cloud1.png" type="Texture" id=6]
+[ext_resource path="res://images/cloud0.png" type="Texture" id=7]
+[ext_resource path="res://images/highlight.png" type="Texture" id=8]
+[ext_resource path="res://plane.gd" type="Script" id=9]
+[ext_resource path="res://images/palne.png" type="Texture" id=10]
+[ext_resource path="res://images/rocket.png" type="Texture" id=11]
+[ext_resource path="res://images/exhaust.png" type="Texture" id=12]
+[ext_resource path="res://target.gd" type="Script" id=13]
+[ext_resource path="res://images/apk.png" type="Texture" id=14]
+
+[sub_resource type="ParticlesMaterial" id=1]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 1, 50, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 0.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 0.0
+angular_velocity = 2.04477e-41
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
+
+[sub_resource type="Animation" id=2]
+
+length = 0.8
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("exhaust:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[node name="main" type="Node" index="0"]
+
+[node name="background_layer" type="Control" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Size Flags", "Theme" ]
+
+[node name="Background" type="TextureRect" parent="background_layer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 720.0
+margin_bottom = 270.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+texture = ExtResource( 1 )
+stretch_mode = 2
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sun" type="Sprite" parent="background_layer" index="1"]
+
+position = Vector2( 172, 204 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="clouds" type="Node2D" parent="background_layer" index="2"]
+
+editor/display_folded = true
+position = Vector2( -55.1756, 288.243 )
+
+[node name="Particles2D" type="Particles2D" parent="background_layer/clouds" index="0"]
+
+emitting = true
+amount = 3
+lifetime = 100.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
+
+[node name="Particles2D2" type="Particles2D" parent="background_layer/clouds" index="1"]
+
+emitting = true
+amount = 4
+lifetime = 100.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 4 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
+
+[node name="Particles2D3" type="Particles2D" parent="background_layer/clouds" index="2"]
+
+emitting = true
+amount = 6
+lifetime = 100.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 5 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
+
+[node name="Particles2D4" type="Particles2D" parent="background_layer/clouds" index="3"]
+
+emitting = true
+amount = 8
+lifetime = 100.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 6 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
+
+[node name="Particles2D5" type="Particles2D" parent="background_layer/clouds" index="4"]
+
+emitting = true
+amount = 12
+lifetime = 100.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 7 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time", "Transform" ]
+
+[node name="clouds_close" type="Node2D" parent="background_layer" index="3"]
+
+editor/display_folded = true
+position = Vector2( -55.1756, 288.243 )
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Particles2D" type="Particles2D" parent="background_layer/clouds_close" index="0"]
+
+emitting = true
+amount = 2
+lifetime = 60.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time", "Transform" ]
+
+[node name="Particles2D2" type="Particles2D" parent="background_layer/clouds_close" index="1"]
+
+emitting = true
+amount = 1
+lifetime = 60.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 4 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
+
+[node name="Particles2D3" type="Particles2D" parent="background_layer/clouds_close" index="2"]
+
+emitting = true
+amount = 4
+lifetime = 60.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 5 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
+
+[node name="Particles2D4" type="Particles2D" parent="background_layer/clouds_close" index="3"]
+
+emitting = true
+amount = 5
+lifetime = 60.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 6 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
+
+[node name="Particles2D5" type="Particles2D" parent="background_layer/clouds_close" index="4"]
+
+emitting = true
+amount = 6
+lifetime = 60.0
+one_shot = false
+preprocess = 100.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 7 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
+
+[node name="highlight" type="Sprite" parent="background_layer" index="4"]
+
+position = Vector2( 40, 394 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="plane" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( 100, 100 )
+script = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="plane" type="Sprite" parent="plane" index="0"]
+
+editor/display_folded = true
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="rocket" type="Sprite" parent="plane/plane" index="0"]
+
+position = Vector2( -6.5, 7 )
+z_index = -1
+texture = ExtResource( 11 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="exhaust" type="Sprite" parent="plane/plane" index="1"]
+
+position = Vector2( -37, 1 )
+texture = ExtResource( 12 )
+centered = false
+vframes = 8
+frame = 4
+_sections_unfolded = [ "Animation", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="plane/plane" index="2"]
+
+root_node = NodePath("..")
+autoplay = "exhaust"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/exhaust = SubResource( 2 )
+blend_times = [  ]
+
+[node name="target" type="Node2D" parent="." index="2"]
+
+position = Vector2( 260, 440 )
+script = ExtResource( 13 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="target" type="Sprite" parent="target" index="0"]
+
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+
