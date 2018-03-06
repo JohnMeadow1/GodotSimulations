@@ -10,3 +10,8 @@ Each example have 2 versions: <b>starting</b> with framework for implementation 
 Introduction to simulation by implementing conservation of momentum.
 
 ![conservation_of_momentum](/assets/examples_animations/conservation_of_momentum.gif)
+
+### [hookes_law](/final/hookes_law)
+Oscillators implementation using Hooke's law.
+
+![conservation_of_momentum](/assets/examples_animations/hookes_law.gif)

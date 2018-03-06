@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/point32.png-319ad491b011cd836bed751014ec0658.stex"
 
 [deps]
 
-source_file="res://icon.png"
-source_md5="4a36c9ee04618cc9b49296a22f759972"
+source_file="res://images/point32.png"
+source_md5="917b232227f12445a5b12ba98edf887d"
 
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
-dest_md5="49ed9f37eb60e237d2c72636b8ee661d"
+dest_files=[ "res://.import/point32.png-319ad491b011cd836bed751014ec0658.stex" ]
+dest_md5="8c3079c4cab9a779caad738db1f89132"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
