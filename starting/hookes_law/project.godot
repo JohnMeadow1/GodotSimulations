@@ -20,8 +20,7 @@ settings/stdout/print_fps=true
 
 [display]
 
-window/size/width=720
-window/size/height=500
+window/size/height=768
 
 [physics]
 
