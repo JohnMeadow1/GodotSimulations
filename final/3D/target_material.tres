@@ -1,6 +1,6 @@
 [gd_resource type="SpatialMaterial" load_steps=2 format=2]
 
-[ext_resource path="res://target.png" type="Texture" id=1]
+[ext_resource path="res://images/blue.jpg" type="Texture" id=1]
 
 [resource]
 
@@ -18,7 +18,7 @@ vertex_color_is_srgb = false
 params_diffuse_mode = 0
 params_specular_mode = 0
 params_blend_mode = 0
-params_cull_mode = 0
+params_cull_mode = 2
 params_depth_draw_mode = 0
 params_line_width = 5.0
 params_point_size = 1.0

@@ -11,6 +11,6 @@ config_version=3
 [application]
 
 run/main_scene="res://main.tscn"
-icon="res://icon.png"
 main_scene="res://main.tscn"
 name="3D"
+icon="red://icon.png"
