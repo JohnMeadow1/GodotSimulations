@@ -1,10 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://images/Background.png" type="Texture" id=1]
-[ext_resource path="res://top_water.gd" type="Script" id=2]
+[ext_resource path="res://main.gd" type="Script" id=1]
+[ext_resource path="res://images/Background.png" type="Texture" id=2]
 [ext_resource path="res://oscillator.gd" type="Script" id=3]
+[ext_resource path="res://top_water.gd" type="Script" id=4]
+[ext_resource path="res://metaball.shader" type="Shader" id=5]
+[ext_resource path="res://front_water.gd" type="Script" id=6]
 
-[node name="main" type="Node" index="0"]
+[sub_resource type="ShaderMaterial" id=2]
+
+render_priority = 0
+shader = ExtResource( 5 )
+
+[node name="main" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="background_layer" type="Control" parent="." index="0"]
 
@@ -30,32 +43,73 @@ __meta__ = {
 scale = Vector2( 3, 3 )
 z_index = -100
 z_as_relative = false
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="top_water" type="Node2D" parent="." index="1"]
-
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="stones" type="Node" parent="." index="2"]
-
-[node name="Oscillator" type="Node2D" parent="." index="3"]
+[node name="oscillator" type="Node2D" parent="." index="1"]
 
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="springs" type="Node" parent="." index="4"]
+[node name="top_water" type="Node2D" parent="." index="2"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="stones" type="Node" parent="." index="3"]
+
+[node name="front_water" type="Sprite" parent="." index="4"]
+
+material = SubResource( 2 )
+z_index = 2
+centered = false
+_sections_unfolded = [ "Material", "Offset", "Transform", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Viewport" type="Viewport" parent="." index="5"]
+
+arvr = false
+size = Vector2( 1024, 768 )
+own_world = false
+world = null
+transparent_bg = true
+msaa = 0
+hdr = false
+disable_3d = true
+usage = 2
+debug_draw = 0
+render_target_v_flip = true
+render_target_clear_mode = 0
+render_target_update_mode = 2
+audio_listener_enable_2d = false
+audio_listener_enable_3d = false
+physics_object_picking = false
+gui_disable_input = false
+gui_snap_controls_to_pixels = false
+shadow_atlas_size = 0
+shadow_atlas_quad_0 = 2
+shadow_atlas_quad_1 = 2
+shadow_atlas_quad_2 = 3
+shadow_atlas_quad_3 = 4
+_sections_unfolded = [ "GUI", "Pause", "Physics", "Render Target", "Rendering" ]
+
+[node name="front_water" type="Node2D" parent="Viewport" index="0"]
+
+script = ExtResource( 6 )
+
+[node name="metaballs" type="Node" parent="Viewport" index="1"]
+
+[node name="Gui" type="CanvasLayer" parent="." index="6"]
 
 editor/display_folded = true
 layer = 1
@@ -64,7 +118,7 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Spring settings" type="Label" parent="CanvasLayer" index="0"]
+[node name="Spring settings" type="Label" parent="Gui" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -89,8 +143,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Mass" type="Label" parent="CanvasLayer" index="1"]
+[node name="Mass" type="Label" parent="Gui" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -112,8 +169,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Stiffness" type="Label" parent="CanvasLayer" index="2"]
+[node name="Stiffness" type="Label" parent="Gui" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -135,8 +195,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Damping" type="Label" parent="CanvasLayer" index="3"]
+[node name="Damping" type="Label" parent="Gui" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -158,8 +221,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Wave_spread" type="Label" parent="CanvasLayer" index="4"]
+[node name="Wave_spread" type="Label" parent="Gui" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -181,5 +247,8 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 
