@@ -1,14 +1,20 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://camera.gd" type="Script" id=1]
-[ext_resource path="res://tlo.tres" type="Material" id=2]
+[ext_resource path="res://images/park.hdr" type="Texture" id=2]
 [ext_resource path="res://canvas.gd" type="Script" id=3]
 [ext_resource path="res://target_material.tres" type="Material" id=4]
 [ext_resource path="res://canvas_node.gd" type="Script" id=5]
 
+[sub_resource type="PanoramaSky" id=2]
+
+radiance_size = 4
+panorama = ExtResource( 2 )
+
 [sub_resource type="Environment" id=1]
 
-background_mode = 0
+background_mode = 2
+background_sky = SubResource( 2 )
 background_sky_custom_fov = 0.0
 background_color = Color( 0, 0, 0, 1 )
 background_energy = 1.0
@@ -83,15 +89,7 @@ adjustment_enabled = false
 adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
-_sections_unfolded = [ "Ambient Light" ]
-
-[sub_resource type="CylinderMesh" id=2]
-
-top_radius = 1.0
-bottom_radius = 1.0
-height = 2.0
-radial_segments = 64
-rings = 4
+_sections_unfolded = [ "Ambient Light", "Background" ]
 
 [node name="Node" type="Node" index="0"]
 
@@ -121,6 +119,7 @@ environment = SubResource( 1 )
 [node name="OmniLight" type="OmniLight" parent="Enviroment" index="2"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.254496, 3.75339, 4.25873 )
+visible = false
 layers = 1
 light_color = Color( 1, 1, 0.784314, 1 )
 light_energy = 1.0
@@ -141,24 +140,7 @@ omni_shadow_mode = 1
 omni_shadow_detail = 1
 _sections_unfolded = [ "Light", "Omni" ]
 
-[node name="floor" type="MeshInstance" parent="Enviroment" index="3"]
-
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0.101074, -0.939386, 0.453916 )
-layers = 1
-material_override = ExtResource( 2 )
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
-mesh = SubResource( 2 )
-skeleton = NodePath("..")
-material/0 = null
-_sections_unfolded = [ "Geometry", "Transform", "material" ]
-
-[node name="canvas" type="Node" parent="Enviroment" index="4"]
+[node name="canvas" type="Node" parent="Enviroment" index="3"]
 
 script = ExtResource( 3 )
 _sections_unfolded = [ "Pause" ]
