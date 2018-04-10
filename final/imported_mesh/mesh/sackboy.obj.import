@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sackboy.obj-808aa615ef0e34a29db62bd086ef220f.mesh"
+
+[deps]
+
+files=[ "res://.import/sackboy.obj-808aa615ef0e34a29db62bd086ef220f.mesh" ]
+
+source_file="res://mesh/sackboy.obj"
+source_md5="57965f6425fb242298de961d26e19d7e"
+
+dest_files=[ "res://.import/sackboy.obj-808aa615ef0e34a29db62bd086ef220f.mesh", "res://.import/sackboy.obj-808aa615ef0e34a29db62bd086ef220f.mesh" ]
+dest_md5="232eddadfa8a698d8370022d84eb7402"
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )

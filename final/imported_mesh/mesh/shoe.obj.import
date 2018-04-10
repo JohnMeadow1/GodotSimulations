@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/shoe.obj-d3822330db925d22d832af84618f840d.mesh"
+
+[deps]
+
+files=[ "res://.import/shoe.obj-d3822330db925d22d832af84618f840d.mesh" ]
+
+source_file="res://mesh/shoe.obj"
+source_md5="79c06365d222cdd9286afb73228686ca"
+
+dest_files=[ "res://.import/shoe.obj-d3822330db925d22d832af84618f840d.mesh", "res://.import/shoe.obj-d3822330db925d22d832af84618f840d.mesh" ]
+dest_md5="7a573ec4c6f1d51740b480adbbbc025d"
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
