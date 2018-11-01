@@ -1,5 +1,9 @@
 # Godot Engine 3 Simulations
-All examples are created using [Godot Engine 3](https://github.com/godotengine/godot)
+
+*Powered by [Godot Engine](https://godotengine.org)*
+
+![godot-logo](https://raw.githubusercontent.com/godotengine/godot/master/logo.png)
+
 This repository is dedicated to teaching simulations. For this reason some examples will be in form of modules and will require compiling Godot Engine. This information will be stated in each example.
 
 ## Examples:
