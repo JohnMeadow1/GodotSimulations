@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/meta_ball32.png-f06a652d8950761c7b4358a2c4006c45.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://images/meta_ball32.png"
-source_md5="b9ae05a7abe03060d7be22688d7a6eef"
-
 dest_files=[ "res://.import/meta_ball32.png-f06a652d8950761c7b4358a2c4006c45.stex" ]
-dest_md5="a9d6d24d552be7c10e59714690bcf44a"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

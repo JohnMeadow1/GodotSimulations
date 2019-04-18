@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://images/Background.png" type="Texture" id=2]
@@ -6,249 +6,132 @@
 [ext_resource path="res://top_water.gd" type="Script" id=4]
 [ext_resource path="res://metaball.shader" type="Shader" id=5]
 [ext_resource path="res://front_water.gd" type="Script" id=6]
+[ext_resource path="res://surfer.tscn" type="PackedScene" id=7]
 
-[sub_resource type="ShaderMaterial" id=2]
-
-render_priority = 0
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
 
-[node name="main" type="Node2D" index="0"]
-
+[node name="main" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="background_layer" type="Control" parent="." index="0"]
-
+[node name="background_layer" type="Control" parent="."]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -2.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Size Flags", "Theme" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="background" type="Sprite" parent="background_layer" index="0"]
-
+[node name="background" type="Sprite" parent="background_layer"]
 scale = Vector2( 3, 3 )
 z_index = -100
 z_as_relative = false
 texture = ExtResource( 2 )
 centered = false
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="oscillator" type="Node2D" parent="." index="1"]
-
+[node name="oscillator" type="Node2D" parent="."]
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="top_water" type="Node2D" parent="." index="2"]
-
+[node name="top_water" type="Node2D" parent="."]
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="stones" type="Node" parent="." index="3"]
+[node name="stones" type="Node" parent="."]
 
-[node name="front_water" type="Sprite" parent="." index="4"]
-
-material = SubResource( 2 )
+[node name="front_water" type="Sprite" parent="."]
+material = SubResource( 1 )
 z_index = 2
 centered = false
-_sections_unfolded = [ "Material", "Offset", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Viewport" type="Viewport" parent="." index="5"]
-
-arvr = false
+[node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1024, 768 )
-own_world = false
-world = null
 transparent_bg = true
-msaa = 0
 hdr = false
 disable_3d = true
-usage = 2
-debug_draw = 0
 render_target_v_flip = true
-render_target_clear_mode = 0
-render_target_update_mode = 2
-audio_listener_enable_2d = false
-audio_listener_enable_3d = false
-physics_object_picking = false
-gui_disable_input = false
 gui_snap_controls_to_pixels = false
-shadow_atlas_size = 0
-shadow_atlas_quad_0 = 2
-shadow_atlas_quad_1 = 2
-shadow_atlas_quad_2 = 3
-shadow_atlas_quad_3 = 4
-_sections_unfolded = [ "GUI", "Pause", "Physics", "Render Target", "Rendering" ]
 
-[node name="front_water" type="Node2D" parent="Viewport" index="0"]
-
+[node name="front_water" type="Node2D" parent="Viewport"]
 script = ExtResource( 6 )
 
-[node name="metaballs" type="Node" parent="Viewport" index="1"]
+[node name="metaballs" type="Node" parent="Viewport"]
 
-[node name="Gui" type="CanvasLayer" parent="." index="6"]
-
+[node name="Gui" type="CanvasLayer" parent="."]
 editor/display_folded = true
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Spring settings" type="Label" parent="Gui" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Spring settings" type="Label" parent="Gui"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 60.0
 margin_bottom = 34.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Spring settings:
 Mass:
 Stiffness:
 Damping:
 Spread:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Mass" type="Label" parent="Gui" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Mass" type="Label" parent="Gui"]
 margin_left = 20.0
 margin_top = 37.0
 margin_right = 120.0
 margin_bottom = 51.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "0"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Stiffness" type="Label" parent="Gui" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Stiffness" type="Label" parent="Gui"]
 margin_left = 20.0
 margin_top = 55.0
 margin_right = 120.0
 margin_bottom = 69.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "0"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Damping" type="Label" parent="Gui" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Damping" type="Label" parent="Gui"]
 margin_left = 20.0
 margin_top = 71.0
 margin_right = 120.0
 margin_bottom = 85.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "0"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Wave_spread" type="Label" parent="Gui" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Wave_spread" type="Label" parent="Gui"]
 margin_left = 20.0
 margin_top = 88.0
 margin_right = 120.0
 margin_bottom = 102.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "0"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="surfer" parent="." instance=ExtResource( 7 )]
+position = Vector2( 338.538, 400 )
 
