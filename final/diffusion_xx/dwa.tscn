@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://dwa.shader" type="Shader" id=1]
+[ext_resource path="res://start.png" type="Texture" id=2]
+[ext_resource path="res://rect.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+
+render_priority = 0
+shader = ExtResource( 1 )
+shader_param/alpha = null
+
+[node name="dwa" type="Node2D"]
+
+[node name="rect" type="Sprite" parent="." index="0"]
+
+material = SubResource( 1 )
+z_as_relative = false
+texture = ExtResource( 2 )
+offset = Vector2( 512, 300 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Material", "Offset", "Transform", "Visibility", "Z Index" ]
+
+

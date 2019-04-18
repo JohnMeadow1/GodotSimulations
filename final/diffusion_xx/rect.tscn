@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://rect.png" type="Texture" id=1]
+
+[node name="rect" type="Sprite"]
+
+scale = Vector2( 0.01, 0.01 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Offset", "Transform" ]
+
+

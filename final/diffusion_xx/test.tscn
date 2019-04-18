@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://test.gd" type="Script" id=1]
+[ext_resource path="res://equation.shader" type="Shader" id=2]
+[ext_resource path="res://rect.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+
+render_priority = 0
+shader = ExtResource( 2 )
+shader_param/is_bulk = null
+shader_param/xxx = Vector3( 1, 1, 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[node name="test" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="rect" type="Sprite" parent="." index="0"]
+
+material = SubResource( 1 )
+position = Vector2( 180.417, 125.031 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Material", "Offset" ]
+
+
