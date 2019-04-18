@@ -27,14 +27,22 @@ func _ready():
 		bodies.push_back(node)
 
 	for i in range( bodies.size() ):
-		bodies[i].set_velocity( Vector2( 0.0, 0.0 ) )
+		bodies[i].set_velocity( Vector2() )
 		bodies[i].set_mass( node_mass )
+		for j in range(bodies.size()):
+			if bodies[i] != bodies[j]:
+				bodies[i].neighbors.append(bodies[j])
+				bodies[i].stiffness.append(10)
+				bodies[i].resting_length.append(100)
 		for j in range(i):
 			# TODO: link creation
-			
-			var link = link_object.instance()
-			link.initialize( bodies[i],bodies[j] )
-			$"../springs".add_child( link )
+			create_spring(bodies[i],bodies[j])
+
+
+func create_spring(node_1, node_2):
+	var link = link_object.instance()
+	link.initialize( node_1, node_2 )
+	$"../springs".add_child( link )
 
 func _input(event):
 	if event.is_action_pressed("ui_left"):
