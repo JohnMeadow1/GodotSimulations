@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/rocket.png-03730b08f0c1ecafca3f023324bbc4a0.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://images/rocket.png"
-source_md5="313c7efd28226a39bdce870024ea11bb"
-
 dest_files=[ "res://.import/rocket.png-03730b08f0c1ecafca3f023324bbc4a0.stex" ]
-dest_md5="33d61ac05d39d7c0374b2b323dee3b3d"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

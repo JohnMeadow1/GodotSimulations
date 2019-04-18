@@ -4,57 +4,61 @@
 [ext_resource path="res://oscillator.gd" type="Script" id=2]
 [ext_resource path="res://node.tscn" type="PackedScene" id=3]
 
-[node name="main" type="Node" index="0"]
+[node name="main" type="Node"]
 
-[node name="background_layer" type="Control" parent="." index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="background_layer" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -2.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Size Flags", "Theme" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="background" type="Sprite" parent="background_layer" index="0"]
-
+[node name="background" type="Sprite" parent="background_layer"]
 scale = Vector2( 3, 3 )
 z_index = -100
 texture = ExtResource( 1 )
 centered = false
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Oscillator" type="Node2D" parent="." index="1"]
-
+[node name="Oscillator" type="Node2D" parent="."]
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="node" parent="Oscillator" index="0" instance=ExtResource( 3 )]
-
+[node name="node" parent="Oscillator" instance=ExtResource( 3 )]
 position = Vector2( 513.109, 203.527 )
-_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 is_static = true
 
-[node name="node2" parent="Oscillator" index="1" instance=ExtResource( 3 )]
-
+[node name="node2" parent="Oscillator" instance=ExtResource( 3 )]
 position = Vector2( 443.428, 329.812 )
 
-[node name="node3" parent="Oscillator" index="2" instance=ExtResource( 3 )]
+[node name="node3" parent="Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 592.721, 355.472 )
 
-position = Vector2( 546.013, 435.908 )
+[node name="node4" parent="Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 437.596, 267.995 )
 
-[node name="springs" type="Node" parent="." index="2"]
+[node name="node5" parent="Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 666.201, 339.143 )
 
+[node name="node6" parent="Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 563.562, 392.795 )
+
+[node name="node7" parent="Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 547.233, 281.992 )
+
+[node name="node8" parent="Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 617.214, 396.294 )
+
+[node name="node9" parent="Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 623.046, 260.997 )
+
+[node name="node10" parent="Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 501.745, 365.969 )
+
+[node name="springs" type="Node" parent="."]
 

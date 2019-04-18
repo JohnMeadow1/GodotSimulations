@@ -1,6 +1,6 @@
 extends Node2D
 
-var numer_of_nodes    = 60
+var numer_of_nodes    = 120
 var node_object       = load("res://node.tscn")
 # setup params
 var selected_param    = 0
@@ -32,6 +32,8 @@ var btn_down     = null
 
 var input_timer  = 0.1
 
+var wave_timer = 0.0
+
 func _ready():
 	randomize()
 	for i in range ( numer_of_nodes + 1):
@@ -43,6 +45,7 @@ func _ready():
 		node.start_position        = get_viewport_rect().size.y
 		$oscillator.add_child( node )
 	update_params()
+
 	
 func update_params():
 	for node in $oscillator.get_children():
@@ -125,6 +128,9 @@ func _process(delta):
 		for node in $oscillator.get_children():
 			if get_global_mouse_position().distance_to( node.position ) < selection_distance:
 				$oscillator.selection = node
+	
+	wave_timer += delta*5
+	$oscillator.get_child(numer_of_nodes-1).position.y = sin(wave_timer)*50 +450
 	propagate_waves()
 	print_values()
 	update()

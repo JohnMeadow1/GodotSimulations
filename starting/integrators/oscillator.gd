@@ -25,17 +25,21 @@ var inf_RL   = Vector2(20.0,0.0)
 func _ready():
 	for node in get_children():
 		bodies.push_back(node)
-
+	
 	for i in range( bodies.size() ):
 		bodies[i].set_velocity( Vector2( 0.0, 0.0 ) )
 		bodies[i].set_mass( node_mass )
-		for j in range(i):
-			# TODO: link creation
-			
-			var link = link_object.instance()
-			link.initialize( bodies[i],bodies[j] )
-			$"../springs".add_child( link )
-
+	
+		for j in range( bodies.size() ):
+			if bodies[i] != bodies[j]:
+				bodies[i].neighbors.append( bodies[j] )
+				bodies[i].stiffness.append( 1 )
+				bodies[i].resting_length.append( 50 )
+	
+#		for j in range(i):
+#			var link = link_object.instance()
+#			link.initialize( bodies[i],bodies[j] )
+#			$"../springs".add_child( link )
 func _input(event):
 	if event.is_action_pressed("ui_left"):
 		MOVE_LFT = true
@@ -85,7 +89,7 @@ func _process(delta):
 		bodies[0].position -= inf_DU*delta
 	if MOVE_DWN:
 		bodies[0].position += inf_DU*delta
-	update()
+#	update()
 
 func draw_arrow( from, to, color = Color(1.0, 1.0, 1.0, 0.5) ):
 	var arrow_point = PoolVector2Array()
@@ -104,9 +108,9 @@ func draw_arrow( from, to, color = Color(1.0, 1.0, 1.0, 0.5) ):
 func draw_spring(from, to):
 	pass
 
-func _draw():
-	for body in bodies:
-		draw_arrow(body.position, body.position + body.velocity)
-		
-	if selection != null:  # draw selected point
-		draw_circle( selection.position, 30, Color( 1, 1, 1, 0.3 ) )
+#func _draw():
+#	for body in bodies:
+#		draw_arrow(body.position, body.position + body.velocity)
+#
+#	if selection != null:  # draw selected point
+#		draw_circle( selection.position, 30, Color( 1, 1, 1, 0.3 ) )

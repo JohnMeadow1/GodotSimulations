@@ -20,7 +20,7 @@ func _ready():
 	mu = pow(mass, -1.0)
 func _physics_process(delta):
 	if !is_static:
-		verlet( delta )
+		simplectic_euler( delta )
 		
 func verlet( delta ):
 	get_force()
@@ -28,7 +28,6 @@ func verlet( delta ):
 	previous_position = position
 	position = new_position
 	velocity = (position - previous_position)/delta
-	print(velocity)
 	
 func euler( delta ):
 	get_force()

@@ -3,7 +3,7 @@
 [ext_resource path="res://node.gd" type="Script" id=1]
 [ext_resource path="res://images/point32.png" type="Texture" id=2]
 
-[node name="node" type="Node2D"]
+[node name="node" type="Node2D" index="0"]
 
 z_index = 1
 script = ExtResource( 1 )

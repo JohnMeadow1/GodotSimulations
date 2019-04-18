@@ -1,0 +1,206 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://images/background.png" type="Texture" id=1]
+[ext_resource path="res://images/sun.png" type="Texture" id=2]
+[ext_resource path="res://images/cloud4.png" type="Texture" id=3]
+[ext_resource path="res://images/cloud3.png" type="Texture" id=4]
+[ext_resource path="res://images/cloud2.png" type="Texture" id=5]
+[ext_resource path="res://images/cloud1.png" type="Texture" id=6]
+[ext_resource path="res://images/cloud0.png" type="Texture" id=7]
+[ext_resource path="res://images/highlight.png" type="Texture" id=8]
+[ext_resource path="res://plane.gd" type="Script" id=9]
+[ext_resource path="res://images/palne.png" type="Texture" id=10]
+[ext_resource path="res://images/rocket.png" type="Texture" id=11]
+[ext_resource path="res://images/exhaust.png" type="Texture" id=12]
+[ext_resource path="res://target.gd" type="Script" id=13]
+[ext_resource path="res://images/apk.png" type="Texture" id=14]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 50, 1 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+angular_velocity = 2.04477e-041
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="Animation" id=2]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("exhaust:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[node name="main" type="Node"]
+
+[node name="background_layer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="TextureRect" parent="background_layer"]
+margin_right = 720.0
+margin_bottom = 270.0
+rect_scale = Vector2( 2, 2 )
+size_flags_horizontal = 3
+texture = ExtResource( 1 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sun" type="Sprite" parent="background_layer"]
+position = Vector2( 172, 204 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="clouds" type="Node2D" parent="background_layer"]
+editor/display_folded = true
+position = Vector2( -55.1756, 288.243 )
+
+[node name="Particles2D" type="Particles2D" parent="background_layer/clouds"]
+amount = 3
+lifetime = 100.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D2" type="Particles2D" parent="background_layer/clouds"]
+amount = 4
+lifetime = 100.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 4 )
+
+[node name="Particles2D3" type="Particles2D" parent="background_layer/clouds"]
+amount = 6
+lifetime = 100.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 5 )
+
+[node name="Particles2D4" type="Particles2D" parent="background_layer/clouds"]
+lifetime = 100.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 6 )
+
+[node name="Particles2D5" type="Particles2D" parent="background_layer/clouds"]
+amount = 12
+lifetime = 100.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 7 )
+
+[node name="clouds_close" type="Node2D" parent="background_layer"]
+editor/display_folded = true
+position = Vector2( -55.1756, 288.243 )
+scale = Vector2( 2, 2 )
+
+[node name="Particles2D" type="Particles2D" parent="background_layer/clouds_close"]
+amount = 2
+lifetime = 60.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D2" type="Particles2D" parent="background_layer/clouds_close"]
+amount = 1
+lifetime = 60.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 4 )
+
+[node name="Particles2D3" type="Particles2D" parent="background_layer/clouds_close"]
+amount = 4
+lifetime = 60.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 5 )
+
+[node name="Particles2D4" type="Particles2D" parent="background_layer/clouds_close"]
+amount = 5
+lifetime = 60.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 6 )
+
+[node name="Particles2D5" type="Particles2D" parent="background_layer/clouds_close"]
+amount = 6
+lifetime = 60.0
+preprocess = 100.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 7 )
+
+[node name="highlight" type="Sprite" parent="background_layer"]
+position = Vector2( 40, 394 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="plane" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 100, 100 )
+script = ExtResource( 9 )
+
+[node name="plane" type="Sprite" parent="plane"]
+editor/display_folded = true
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="rocket" type="Sprite" parent="plane/plane"]
+position = Vector2( -6.5, 7 )
+z_index = -1
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="exhaust" type="Sprite" parent="plane/plane"]
+position = Vector2( -37, 1 )
+texture = ExtResource( 12 )
+centered = false
+vframes = 8
+frame = 4
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="plane/plane"]
+autoplay = "exhaust"
+anims/exhaust = SubResource( 2 )
+
+[node name="target" type="Node2D" parent="."]
+position = Vector2( 260, 440 )
+script = ExtResource( 13 )
+
+[node name="target" type="Sprite" parent="target"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
+

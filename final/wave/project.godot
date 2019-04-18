@@ -6,7 +6,12 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=3
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
 
 [application]
 
@@ -16,15 +21,17 @@ config/icon="res://icon.png"
 
 [debug]
 
+settings/fps/force_fps=60
 settings/stdout/print_fps=true
 
 [display]
 
 window/size/height=768
+window/vsync/use_vsync=false
 
 [physics]
 
-common/physics_fps=120
+2d/default_gravity_vector=Vector2( 1, 1 )
 
 [rendering]
 
