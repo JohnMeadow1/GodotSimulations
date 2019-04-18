@@ -1,12 +1,31 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://images/background.png" type="Texture" id=1]
 [ext_resource path="res://oscillator.gd" type="Script" id=2]
 [ext_resource path="res://node.tscn" type="PackedScene" id=3]
 
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment() {
+    COLOR =  texture(TEXTURE, UV);
+	if (COLOR.a > 0.90)
+		COLOR.a = 1.0;
+		//COLOR.rgb = vec3(0.0);
+	else
+		COLOR.a = 0.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Viewport")
+
 [node name="main" type="Node"]
 
 [node name="background_layer" type="Control" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -2.0
@@ -23,18 +42,96 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Oscillator" type="Node2D" parent="."]
+[node name="springs" type="Node" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = SubResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1000, 1000 )
+transparent_bg = true
+hdr = false
+usage = 0
+render_target_v_flip = true
+gui_snap_controls_to_pixels = false
+
+[node name="Oscillator" type="Node2D" parent="Viewport"]
+editor/display_folded = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="node" parent="Oscillator" instance=ExtResource( 3 )]
-position = Vector2( 513.109, 203.527 )
+[node name="node" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
 is_static = true
 
-[node name="node2" parent="Oscillator" instance=ExtResource( 3 )]
-position = Vector2( 443.428, 329.812 )
+[node name="node2" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500.05, 400 )
 
-[node name="springs" type="Node" parent="."]
+[node name="node3" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node4" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node5" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400.08 )
+
+[node name="node6" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node7" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node8" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node9" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node10" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node11" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node12" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node13" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node14" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node15" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node16" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node17" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="node18" parent="Viewport/Oscillator" instance=ExtResource( 3 )]
+position = Vector2( 500, 400 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Debug" type="Label" parent="CanvasLayer"]
+margin_left = 24.5548
+margin_top = 24.5548
+margin_right = 65.5548
+margin_bottom = 55.5548
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Debug
+"
 
