@@ -5,7 +5,7 @@ var camera_position           = Vector3(0,0,0)
 var camera_target             = Vector3(0,0,0)
 var camera_up_vector          = Vector3(0,1,0)
 
-var camera_distance_to_center = 5
+var camera_distance_to_center = 15
 
 var yaw         = 0
 var pitch       = 25
@@ -14,7 +14,7 @@ var sensitivity = 0.05
 var scoll_speed = 2
 
 func _ready():
-	set_process_input(true)
+#	set_process_input(true) nie potrzebne
 	set_as_toplevel(true)
 	Input.set_mouse_mode( Input.MOUSE_MODE_CAPTURED )
 
