@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://node.gd" type="Script" id=1]
+[ext_resource path="res://images/point32.png" type="Texture" id=2]
+
+[node name="node" type="Node2D"]
+z_index = 1
+script = ExtResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
