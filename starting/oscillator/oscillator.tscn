@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://oscillator.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[node name="oscillator" type="Node2D"]
+editor/display_folded = true
+position = Vector2( 100, 100 )
+script = ExtResource( 1 )
+k = 1.0
+
+[node name="icon" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = -19.9933
+margin_top = -45.3906
+margin_right = 20.0067
+margin_bottom = -14.3906
+text = "text
+"
+align = 1
+

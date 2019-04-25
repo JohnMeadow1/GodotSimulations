@@ -1,6 +1,6 @@
 extends Node
 
-const CLOTH_SIZE      = 4
+const CLOTH_SIZE      = 8
 var spring_length_x   = 1.25 # odległość węzłów w x
 var spring_length_y   = 1.25 # odległość węzłów w y
 var k_spring_stiffnes = 20
@@ -8,9 +8,7 @@ var points            = []  #
 var nodes             = []  # węzły
 var springs           = []  # węzły
 
-var variable = null
-
-var attached          = [ -CLOTH_SIZE/2, -CLOTH_SIZE/4, 0, CLOTH_SIZE/4, CLOTH_SIZE/2-1 ] # punkt zaczepienia
+#var attached          = [ -CLOTH_SIZE/2, -CLOTH_SIZE/4, 0, CLOTH_SIZE/4, CLOTH_SIZE/2-1 ] # punkt zaczepienia
 
 var node_object       = load("res://canvas_node.tscn")
 var spring_object     = load("res://spring.gd") 
@@ -20,7 +18,7 @@ func _ready():
 #	nodes[ CLOTH_SIZE * CLOTH_SIZE / 2 ].position += Vector3( 0.0, 0.0, 0.1 )
 	
 
-func _process(delta):
+func _process(_delta):
 	for spring in springs:
 		spring.length_ratio = ( spring.connected_nodes[0].position - spring.connected_nodes[1].position ).length() / spring.rest_length * 0.5
 		
@@ -61,20 +59,31 @@ func connect_springs():
 		new_spring.add_node( nodes[local_i] )
 		new_spring.add_node( nodes[local_i_plus] )
 		springs.push_back(new_spring)
-			
+
+#	for i in range( ((CLOTH_SIZE) * (CLOTH_SIZE-1)) ):
+#		var local_i = floor( float(i) / (CLOTH_SIZE) ) * (CLOTH_SIZE)  + i % (CLOTH_SIZE) 
+#		var local_i_plus = local_i + CLOTH_SIZE+1
+#		if local_i_plus < (CLOTH_SIZE * (CLOTH_SIZE)) :
+#
+#			print( local_i," ", local_i_plus )
+#			var new_spring = spring_object.new()
+#			new_spring.add_node( nodes[local_i] )
+#			new_spring.add_node( nodes[local_i_plus] )
+#			springs.push_back(new_spring)
+
 func create_canvas():
 	# initialize points
-	for i in range( -CLOTH_SIZE / 2, CLOTH_SIZE / 2 ):
-		for j in range( -CLOTH_SIZE / 2, CLOTH_SIZE / 2 ):
+	for i in range( CLOTH_SIZE ):
+		for j in range( CLOTH_SIZE  ):
 			# trzeba ta zrobić, żeby to węzły się tworzyły
 			var new_node     = node_object.instance()
-			new_node.position = Vector3( spring_length_x * i, spring_length_y * j, 0.0 )
+			new_node.position = Vector3( spring_length_x * i-CLOTH_SIZE / 2.0, spring_length_y * j-CLOTH_SIZE / 2.0, 0.0 )
 			
-			if j == CLOTH_SIZE / 2-1 and i in attached:
+			if j == CLOTH_SIZE-1:
 				new_node.is_static = true
 				
 			nodes.push_back(new_node)
-#			add_child(new_node)
+			$nodes.add_child(new_node)
 			
 	for i in range(CLOTH_SIZE-1):
 		for j in range(CLOTH_SIZE-1):

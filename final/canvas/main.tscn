@@ -61,3 +61,5 @@ cast_shadow = 0
 material_override = SubResource( 3 )
 cast_shadow = 0
 
+[node name="nodes" type="Node" parent="canvas"]
+

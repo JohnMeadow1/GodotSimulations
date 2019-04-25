@@ -1,7 +1,6 @@
 
 extends Camera
 
-var camera_position           = Vector3(0,0,0)
 var camera_target             = Vector3(0,0,0)
 var camera_up_vector          = Vector3(0,1,0)
 
@@ -18,7 +17,7 @@ func _ready():
 	set_as_toplevel(true)
 	Input.set_mouse_mode( Input.MOUSE_MODE_CAPTURED )
 
-func _physics_process( delta ):
+func _physics_process( _delta ):
 	var x = camera_distance_to_center * sin(deg2rad(yaw)) * cos(deg2rad(pitch))
 	var y = camera_distance_to_center * sin(deg2rad(pitch))
 	var z = camera_distance_to_center * cos(deg2rad(yaw)) * cos(deg2rad(pitch))

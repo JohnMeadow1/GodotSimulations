@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://oscillator.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Gradient" id=1]
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[node name="root" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="oscillator" parent="." instance=ExtResource( 1 )]
+position = Vector2( 249.784, 113.505 )
+k = 1.1
+
+[node name="oscillator2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 249.784, 203.505 )
+k = 2.0
+
+[node name="oscillator3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 249.784, 293.505 )
+k = 59.0
+
+[node name="oscillator4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 249.784, 383.505 )
+k = 119.0
+
+[node name="oscillator5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 249.784, 473.505 )
+k = 121.0
+

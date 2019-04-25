@@ -15,6 +15,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Cloth Simulation"
-run/main_scene="res://main.tscn"
+config/name="Oscillator"
+run/main_scene="res://root.tscn"
 config/icon="res://icon.png"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

@@ -3,8 +3,5 @@
 [ext_resource path="res://canvas_node.gd" type="Script" id=1]
 
 [node name="canvas_node" type="Node"]
-
 script = ExtResource( 1 )
-is_static = false
-
 
