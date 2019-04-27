@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://images/background.png" type="Texture" id=1]
+[ext_resource path="res://spring.tscn" type="PackedScene" id=2]
+[ext_resource path="res://oscillator.gd" type="Script" id=3]
+[ext_resource path="res://node.tscn" type="PackedScene" id=4]
+
+[node name="main" type="Node"]
+
+[node name="background_layer" type="Control" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -2.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" type="Sprite" parent="background_layer"]
+scale = Vector2( 3, 3 )
+z_index = -100
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="springs" type="Node" parent="."]
+
+[node name="link" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 705.59, 152.19 )
+rotation = -0.708206
+scale = Vector2( 0.188767, 1.32439 )
+node_path_1 = NodePath("../../Oscillator/node")
+node_path_2 = NodePath("../../Oscillator/node2")
+
+[node name="link2" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 633.853, 172.974 )
+rotation = 0.192546
+scale = Vector2( 0.184403, 1.35572 )
+node_path_1 = NodePath("../../Oscillator/node")
+node_path_2 = NodePath("../../Oscillator/node3")
+
+[node name="link3" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 688.987, 237.352 )
+rotation = 1.28879
+scale = Vector2( 0.214224, 1.167 )
+node_path_1 = NodePath("../../Oscillator/node2")
+node_path_2 = NodePath("../../Oscillator/node3")
+
+[node name="link4" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 671.249, 309.137 )
+rotation = -0.813962
+scale = Vector2( 0.215411, 1.16057 )
+node_path_1 = NodePath("../../Oscillator/node3")
+node_path_2 = NodePath("../../Oscillator/node4")
+
+[node name="Oscillator" type="Node2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="node" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 650.456, 87.8113 )
+is_static = true
+
+[node name="node2" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 760.725, 216.568 )
+
+[node name="node3" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 617.249, 258.137 )
+
+[node name="node4" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 725.249, 360.137 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="Debug" type="Label" parent="GUI"]
+margin_left = 24.5548
+margin_top = 24.5548
+margin_right = 65.5548
+margin_bottom = 55.5548
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Debug
+"
+
