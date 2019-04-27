@@ -1,0 +1,170 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://images/background.png" type="Texture" id=1]
+[ext_resource path="res://spring.tscn" type="PackedScene" id=2]
+[ext_resource path="res://oscillator.gd" type="Script" id=3]
+[ext_resource path="res://node.tscn" type="PackedScene" id=4]
+
+[node name="main" type="Node"]
+
+[node name="background_layer" type="Control" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -2.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" type="Sprite" parent="background_layer"]
+scale = Vector2( 3, 3 )
+z_index = -100
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="springs" type="Node" parent="."]
+
+[node name="link" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 764, 170 )
+rotation = 1.5708
+scale = Vector2( 0.181818, 0.6875 )
+node_path_1 = NodePath("../../Oscillator/node")
+node_path_2 = NodePath("../../Oscillator/node2")
+
+[node name="link2" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 780, 199 )
+rotation = -1.12057
+scale = Vector2( 0.120047, 1.04126 )
+node_path_1 = NodePath("../../Oscillator/node2")
+node_path_2 = NodePath("../../Oscillator/node4")
+
+[node name="link3" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 711, 195 )
+rotation = 0.345556
+scale = Vector2( 0.301084, 0.415167 )
+node_path_1 = NodePath("../../Oscillator/node2")
+node_path_2 = NodePath("../../Oscillator/node3")
+
+[node name="link4" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 771, 224 )
+rotation = -1.51289
+scale = Vector2( 0.115748, 1.07994 )
+node_path_1 = NodePath("../../Oscillator/node3")
+node_path_2 = NodePath("../../Oscillator/node4")
+
+[node name="link5" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 824, 199 )
+rotation = -0.504166
+scale = Vector2( 0.241539, 0.517515 )
+node_path_1 = NodePath("../../Oscillator/node")
+node_path_2 = NodePath("../../Oscillator/node4")
+
+[node name="link6" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 721, 250 )
+rotation = -0.564569
+scale = Vector2( 0.225285, 0.554853 )
+node_path_1 = NodePath("../../Oscillator/node3")
+node_path_2 = NodePath("../../Oscillator/node5")
+
+[node name="link7" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 790, 254 )
+rotation = 1.09128
+scale = Vector2( 0.141955, 0.880563 )
+node_path_1 = NodePath("../../Oscillator/node4")
+node_path_2 = NodePath("../../Oscillator/node5")
+
+[node name="link8" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 830, 258 )
+rotation = 0.32175
+scale = Vector2( 0.252982, 0.494106 )
+node_path_1 = NodePath("../../Oscillator/node4")
+node_path_2 = NodePath("../../Oscillator/node6")
+
+[node name="link9" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 780, 284 )
+rotation = -1.47113
+scale = Vector2( 0.199007, 0.628117 )
+node_path_1 = NodePath("../../Oscillator/node5")
+node_path_2 = NodePath("../../Oscillator/node6")
+
+[node name="link10" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 761, 254 )
+rotation = -1.04801
+scale = Vector2( 0.117482, 1.06399 )
+node_path_1 = NodePath("../../Oscillator/node3")
+node_path_2 = NodePath("../../Oscillator/node6")
+
+[node name="link11" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 755, 195 )
+rotation = -2.01155
+scale = Vector2( 0.136518, 0.91563 )
+node_path_1 = NodePath("../../Oscillator/node3")
+node_path_2 = NodePath("../../Oscillator/node")
+
+[node name="Oscillator" type="Node2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="node" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 808, 170 )
+is_static = true
+
+[node name="node2" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 720, 170 )
+is_static = true
+
+[node name="node3" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 702, 220 )
+
+[node name="node4" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 840, 228 )
+
+[node name="node5" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 740, 280 )
+
+[node name="node6" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 820, 288 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Debug" type="Label" parent="GUI"]
+margin_left = 73.0049
+margin_top = 14.1048
+margin_right = 114.005
+margin_bottom = 45.1048
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Debug
+"
+
+[node name="Gravity" type="VScrollBar" parent="GUI"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 27.0
+margin_bottom = 112.0
+max_value = 1000.0
+value = 100.0
+
+[node name="Stiffness" type="VScrollBar" parent="GUI"]
+margin_left = 32.0
+margin_top = 12.0
+margin_right = 47.0
+margin_bottom = 112.0
+max_value = 1000.0
+value = 100.0
+
+[node name="Medium" type="VScrollBar" parent="GUI"]
+margin_left = 52.0
+margin_top = 12.0
+margin_right = 67.0
+margin_bottom = 112.0
+max_value = 10.0
+value = 1.0
+
+[connection signal="value_changed" from="GUI/Gravity" to="Oscillator" method="_on_Gravity_value_changed"]
+[connection signal="value_changed" from="GUI/Stiffness" to="Oscillator" method="_on_Stiffnes_value_changed"]
+[connection signal="value_changed" from="GUI/Medium" to="Oscillator" method="_on_Medium_value_changed"]

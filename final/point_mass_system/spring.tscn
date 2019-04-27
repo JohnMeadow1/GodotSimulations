@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://spring.gd" type="Script" id=1]
+[ext_resource path="res://images/sprint128.png" type="Texture" id=2]
+
+[node name="link" type="Node2D"]
+rotation = 3.14159
+scale = Vector2( 1, 1e-005 )
+script = ExtResource( 1 )
+
+[node name="spring" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
