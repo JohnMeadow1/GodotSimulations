@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://images/point32.png" type="Texture" id=1]
+[ext_resource path="res://point32.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 436.216, 128.299 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="point32" type="Sprite" parent="Node2D"]
+position = Vector2( 100, 0 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+k = 0.016
+
+[node name="Node2D4" type="Node2D" parent="."]
+position = Vector2( 440.882, 211.11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="point32" type="Sprite" parent="Node2D4"]
+position = Vector2( 100, 0 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2( 443.215, 284.59 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="point32" type="Sprite" parent="Node2D2"]
+position = Vector2( 100, 0 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+k = 3.984
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2( 438.549, 345.241 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="point32" type="Sprite" parent="Node2D3"]
+position = Vector2( 100, 0 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+k = 4.0
+
+[node name="Node2D5" type="Node2D" parent="."]
+position = Vector2( 436.216, 421.054 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="point32" type="Sprite" parent="Node2D5"]
+position = Vector2( 100, 0 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+k = 4.016
+

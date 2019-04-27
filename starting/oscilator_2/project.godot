@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "PointMass",
+"language": "GDScript",
+"path": "res://node.gd"
+}, {
+"base": "Node2D",
+"class": "SpringNode",
+"language": "GDScript",
+"path": "res://spring.gd"
+} ]
+_global_script_class_icons={
+"PointMass": "",
+"SpringNode": ""
+}
+
+[application]
+
+config/name="Soft Body 2D"
+run/main_scene="res://main.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/size/height=768
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

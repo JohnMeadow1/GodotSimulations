@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://images/background.png" type="Texture" id=1]
+[ext_resource path="res://spring.tscn" type="PackedScene" id=2]
+[ext_resource path="res://oscillator.gd" type="Script" id=3]
+[ext_resource path="res://node.tscn" type="PackedScene" id=4]
+
+[node name="main" type="Node"]
+
+[node name="background_layer" type="Control" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -2.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" type="Sprite" parent="background_layer"]
+scale = Vector2( 3, 3 )
+z_index = -100
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="springs" type="Node" parent="."]
+
+[node name="link" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 877.09, 156.69 )
+rotation = -0.492406
+scale = Vector2( 0.190843, 1.30998 )
+node_path_1 = NodePath("../../Oscillator/node")
+node_path_2 = NodePath("../../Oscillator/node2")
+
+[node name="link2" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 802.353, 160.474 )
+rotation = 0.424515
+scale = Vector2( 0.187732, 1.33168 )
+node_path_1 = NodePath("../../Oscillator/node")
+node_path_2 = NodePath("../../Oscillator/node3")
+
+[node name="link3" parent="springs" instance=ExtResource( 2 )]
+position = Vector2( 841.987, 234.352 )
+rotation = 1.5202
+scale = Vector2( 0.213807, 1.16928 )
+node_path_1 = NodePath("../../Oscillator/node2")
+node_path_2 = NodePath("../../Oscillator/node3")
+
+[node name="Oscillator" type="Node2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="node" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 837.456, 82.8113 )
+is_static = true
+
+[node name="node2" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 916.725, 230.568 )
+
+[node name="node3" parent="Oscillator" instance=ExtResource( 4 )]
+position = Vector2( 767.249, 238.137 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="Debug" type="Label" parent="GUI"]
+margin_left = 24.5548
+margin_top = 24.5548
+margin_right = 65.5548
+margin_bottom = 55.5548
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Debug
+"
+
