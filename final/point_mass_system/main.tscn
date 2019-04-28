@@ -78,7 +78,7 @@ node_path_2 = NodePath("../../Oscillator/node5")
 
 [node name="link8" parent="springs" instance=ExtResource( 2 )]
 position = Vector2( 830, 258 )
-rotation = 0.32175
+rotation = 0.321751
 scale = Vector2( 0.252982, 0.494106 )
 node_path_1 = NodePath("../../Oscillator/node4")
 node_path_2 = NodePath("../../Oscillator/node6")
@@ -120,15 +120,19 @@ is_static = true
 
 [node name="node3" parent="Oscillator" instance=ExtResource( 4 )]
 position = Vector2( 702, 220 )
+is_static = false
 
 [node name="node4" parent="Oscillator" instance=ExtResource( 4 )]
 position = Vector2( 840, 228 )
+is_static = false
 
 [node name="node5" parent="Oscillator" instance=ExtResource( 4 )]
 position = Vector2( 740, 280 )
+is_static = false
 
 [node name="node6" parent="Oscillator" instance=ExtResource( 4 )]
 position = Vector2( 820, 288 )
+is_static = false
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -166,5 +170,5 @@ max_value = 10.0
 value = 1.0
 
 [connection signal="value_changed" from="GUI/Gravity" to="Oscillator" method="_on_Gravity_value_changed"]
-[connection signal="value_changed" from="GUI/Stiffness" to="Oscillator" method="_on_Stiffnes_value_changed"]
+[connection signal="value_changed" from="GUI/Stiffness" to="Oscillator" method="_on_Stiffness_value_changed"]
 [connection signal="value_changed" from="GUI/Medium" to="Oscillator" method="_on_Medium_value_changed"]
