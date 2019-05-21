@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://main.gd" type="Script" id=1]
+[ext_resource path="res://circle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 50.0
+
+[sub_resource type="PhysicsMaterial" id=3]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 50.0
+
+[sub_resource type="PhysicsMaterial" id=5]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 1000, 100 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 100, 1000 )
+
+[node name="main" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="circle1" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( 350, 150 )
+radius = 50
+friction = 1.0
+
+[node name="circle2" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( 200, 200 )
+radius = 50
+mass = 1.0
+friction = 1.0
+angular_velocity = 10.0
+velocity = Vector2( 60, 0 )
+
+[node name="Node2D2" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D2"]
+editor/display_folded = true
+position = Vector2( 350, 150 )
+mass = 10.0
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+linear_damp = 0.0
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/RigidBody2D"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Node2D2/RigidBody2D"]
+position = Vector2( 30, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="Node2D2"]
+editor/display_folded = true
+position = Vector2( 200, 200 )
+physics_material_override = SubResource( 3 )
+gravity_scale = 0.0
+linear_velocity = Vector2( 60, 0 )
+linear_damp = 0.0
+angular_velocity = 10.0
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/RigidBody2D2"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Node2D2/RigidBody2D2"]
+position = Vector2( 30, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D2"]
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/StaticBody2D"]
+position = Vector2( 318, -100 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D2/StaticBody2D"]
+position = Vector2( 319, 700 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D2/StaticBody2D"]
+position = Vector2( -100, 593 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D2/StaticBody2D"]
+position = Vector2( 1124, 641 )
+shape = SubResource( 7 )
