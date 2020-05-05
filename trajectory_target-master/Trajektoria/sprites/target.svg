@@ -1,0 +1,52 @@
+<?xml version="1.0"?><svg width="472.81253" height="440.56168" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>target board</title>
+ <metadata id="metadata3">target with arrowsportsequipmentOpen Clip Art LibraryVirginie QuesnayVirginie Quesnayimage/svg+xmlen</metadata>
+ <defs>
+  <linearGradient id="linearGradient644">
+   <stop id="stop645" offset="0" stop-color="#dedd07"/>
+   <stop id="stop646" offset="1" stop-color="#4ddd00"/>
+  </linearGradient>
+  <linearGradient id="linearGradient641">
+   <stop id="stop642" offset="0" stop-color="#754a3d"/>
+   <stop id="stop643" offset="1" stop-color="#7f352a"/>
+  </linearGradient>
+  <linearGradient id="linearGradient638">
+   <stop id="stop639" offset="0" stop-color="#754a3d"/>
+   <stop id="stop640" offset="1" stop-color="#7f352a"/>
+  </linearGradient>
+  <linearGradient id="linearGradient828">
+   <stop id="stop829" offset="0" stop-color="#ebcf3d"/>
+   <stop id="stop830" offset="1" stop-color="#7fd22a"/>
+  </linearGradient>
+  <linearGradient id="linearGradient812">
+   <stop id="stop813" offset="0" stop-color="#ff0000"/>
+   <stop id="stop814" offset="1" stop-opacity="0.9294" stop-color="#9d0000"/>
+  </linearGradient>
+  <linearGradient id="linearGradient809">
+   <stop id="stop810" offset="0" stop-color="#ffffff"/>
+   <stop id="stop811" offset="1" stop-opacity="0" stop-color="#ffffff"/>
+  </linearGradient>
+  <linearGradient id="linearGradient775">
+   <stop id="stop776" offset="0" stop-color="#a56d07"/>
+   <stop id="stop777" offset="1" stop-opacity="0.9294" stop-color="#9d0000"/>
+  </linearGradient>
+  <linearGradient id="linearGradient778" x1="-0.13821" x2="0.943089" xlink:href="#linearGradient812" y1="-Infinity" y2="Infinity"/>
+  <linearGradient id="linearGradient806" spreadMethod="reflect" x1="-5.115289" x2="-4.68411" xlink:href="#linearGradient641" y1="0.537685" y2="0.546188"/>
+  <linearGradient id="linearGradient808" x1="-0.097746" x2="1.105263" xlink:href="#linearGradient809" y1="0.031251" y2="1.085937"/>
+  <linearGradient id="linearGradient636" x1="0.609051" x2="1.001246" xlink:href="#linearGradient644" y1="0.624241" y2="2.199738"/>
+  <linearGradient id="linearGradient637" x1="0.003122" x2="1.435131" xlink:href="#linearGradient644" y1="0.454817" y2="0.606425"/>
+  <linearGradient xlink:href="#linearGradient644" id="linearGradient2368" x1="0.003122" y1="0.454814" x2="1.43513" y2="0.606422"/>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <g id="g675">
+   <path d="m434.822998,222.412003a196.912003,206.412003 0 1 1 -393.822998,0a196.912003,206.412003 0 1 1 393.822998,0z" id="path774" fill-rule="evenodd" fill="url(#linearGradient778)"/>
+   <path d="m422.32901,222.412003a184.417007,193.313995 0 1 1 -368.834412,0a184.417007,193.313995 0 1 1 368.834412,0z" id="path605" fill-rule="evenodd" fill="#f20000"/>
+   <path d="m402.026001,222.412003a164.115005,172.031998 0 1 1 -328.228882,0a164.115005,172.031998 0 1 1 328.228882,0z" id="path611" fill-rule="evenodd" fill="#ffffff"/>
+   <path d="m369.880005,222.412003a131.968002,138.335007 0 1 1 -263.936493,0a131.968002,138.335007 0 1 1 263.936493,0z" id="path612" fill-rule="evenodd" fill="#f20000"/>
+   <path d="m345.036011,222.412003a107.124001,112.292999 0 1 1 -214.24881,0a107.124001,112.292999 0 1 1 214.24881,0z" id="path613" fill-rule="evenodd" fill="#ffffff"/>
+   <path d="m308.126007,222.412003a70.213898,73.601402 0 1 1 -140.428009,0a70.213898,73.601402 0 1 1 140.428009,0z" id="path614" fill-rule="evenodd" fill="#f20000"/>
+   <path d="m281.260986,222.412003a43.348801,45.440201 0 1 1 -86.697983,0a43.348801,45.440201 0 1 1 86.697983,0z" id="path615" fill-rule="evenodd" fill="#ffffff"/>
+  </g>
+ </g>
+</svg>
