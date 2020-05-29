@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Carn Horn 1.wav-87c4c18d5327f0ee38726468622dc7ee.sample"
+
+[deps]
+
+source_file="res://sfx/Carn Horn 1.wav"
+dest_files=[ "res://.import/Carn Horn 1.wav-87c4c18d5327f0ee38726468622dc7ee.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pounding.wav-efff6fd18b3d475cd2cd2b9ffa22b115.sample"
+
+[deps]
+
+source_file="res://sfx/Pounding.wav"
+dest_files=[ "res://.import/Pounding.wav-efff6fd18b3d475cd2cd2b9ffa22b115.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

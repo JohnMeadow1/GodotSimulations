@@ -1,0 +1,214 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://main.gd" type="Script" id=1]
+[ext_resource path="res://sprites/track.png" type="Texture" id=2]
+[ext_resource path="res://car.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/car10_2.png" type="Texture" id=4]
+[ext_resource path="res://car_2d.gd" type="Script" id=5]
+[ext_resource path="res://sprites/rubber.png" type="Texture" id=6]
+[ext_resource path="res://sprites/ice.png" type="Texture" id=7]
+[ext_resource path="res://plot.gd" type="Script" id=8]
+[ext_resource path="res://plot_hp.gd" type="Script" id=9]
+[ext_resource path="res://sprites/car10_2_side.png" type="Texture" id=10]
+[ext_resource path="res://sprites/tyre2.png" type="Texture" id=11]
+[ext_resource path="res://side_car.gd" type="Script" id=12]
+[ext_resource path="res://plot_gears.gd" type="Script" id=13]
+[ext_resource path="res://plot_slip.gd" type="Script" id=14]
+[ext_resource path="res://sfx/Wrench.wav" type="AudioStream" id=15]
+
+[sub_resource type="Curve" id=1]
+max_value = 400.0
+_data = [ Vector2( 0, 261.818 ), 0.0, 375.944, 0, 0, Vector2( 0.732143, 400 ), 73.5586, 73.5586, 0, 0, Vector2( 1, 352.727 ), -301.684, 0.0, 0, 0 ]
+
+[node name="main" type="Node2D"]
+script = ExtResource( 1 )
+front_l = NodePath("car_2d/body/wheel_fl")
+front_r = NodePath("car_2d/body/wheel_fr")
+rear_l = NodePath("car_2d/body/wheel_rl")
+rear_r = NodePath("car_2d/body/wheel_rr")
+
+[node name="track" type="Sprite" parent="."]
+modulate = Color( 0.74902, 0.701961, 0.490196, 1 )
+position = Vector2( 1293.59, 526.831 )
+scale = Vector2( 2, 2 )
+z_index = -1000
+z_as_relative = false
+texture = ExtResource( 2 )
+
+[node name="car" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 503.595, 296.02 )
+
+[node name="Camera2D" parent="car" index="2"]
+current = false
+
+[node name="car_2d" type="Node2D" parent="."]
+position = Vector2( 500, 300 )
+script = ExtResource( 5 )
+engine_torque_curve = SubResource( 1 )
+
+[node name="body" type="Sprite" parent="car_2d"]
+show_behind_parent = true
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+[node name="wheel_fr" type="Sprite" parent="car_2d/body"]
+show_behind_parent = true
+position = Vector2( 13, 11 )
+texture = ExtResource( 6 )
+
+[node name="wheel_fl" type="Sprite" parent="car_2d/body"]
+show_behind_parent = true
+position = Vector2( 13, -11 )
+texture = ExtResource( 6 )
+
+[node name="wheel_rr" type="Sprite" parent="car_2d/body"]
+show_behind_parent = true
+position = Vector2( -15, 11 )
+texture = ExtResource( 6 )
+
+[node name="wheel_rl" type="Sprite" parent="car_2d/body"]
+show_behind_parent = true
+position = Vector2( -15, -11 )
+texture = ExtResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="car_2d"]
+current = true
+
+[node name="debug" type="TextureRect" parent="car_2d"]
+modulate = Color( 1, 1, 1, 0.2 )
+margin_left = -98.0
+margin_top = 37.0
+margin_right = 102.0
+margin_bottom = 277.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="car_2d"]
+margin_left = -92.0
+margin_top = 43.0
+margin_right = -52.0
+margin_bottom = 57.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Speed"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="engine" type="AudioStreamPlayer" parent="car_2d"]
+stream = ExtResource( 15 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="plot_traction" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 50, 250 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 8 )
+car_path = NodePath("../../car_2d")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/plot_traction"]
+modulate = Color( 1, 1, 1, 0.3 )
+show_behind_parent = true
+margin_top = -450.0
+margin_right = 700.0
+margin_bottom = -9.15527e-05
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="plot_kW" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 50, 550 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+car_path = NodePath("../../car_2d")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/plot_kW"]
+modulate = Color( 1, 1, 1, 0.3 )
+show_behind_parent = true
+margin_top = -450.0
+margin_right = 700.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="plot_slip" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 793, 419 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 14 )
+car_path = NodePath("../../car_2d")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/plot_slip"]
+modulate = Color( 1, 1, 1, 0.3 )
+show_behind_parent = true
+margin_left = -350.0
+margin_top = -250.0
+margin_right = 350.0
+margin_bottom = 250.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="plot_gears" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 626, 249 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 13 )
+car_path = NodePath("../../car_2d")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/plot_gears"]
+modulate = Color( 1, 1, 1, 0.3 )
+show_behind_parent = true
+margin_top = -450.0
+margin_right = 700.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="side_car" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 513, 221 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 12 )
+car_path = NodePath("../../car_2d")
+
+[node name="body" type="Sprite" parent="CanvasLayer/side_car"]
+show_behind_parent = true
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tyre_rear" type="Sprite" parent="CanvasLayer/side_car"]
+show_behind_parent = true
+position = Vector2( -30, 7 )
+texture = ExtResource( 11 )
+
+[node name="tyre_front" type="Sprite" parent="CanvasLayer/side_car"]
+show_behind_parent = true
+position = Vector2( 26, 7 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="contact_rear" type="Position2D" parent="CanvasLayer/side_car"]
+position = Vector2( -30.5, 14 )
+
+[node name="contact_front" type="Position2D" parent="CanvasLayer/side_car"]
+position = Vector2( 25.5, 14 )
+
+[editable path="car"]

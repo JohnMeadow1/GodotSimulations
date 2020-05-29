@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Tyre_slip_01.wav-8cf20cf42fc379e4a66e3d6b832b1f8b.sample"
+
+[deps]
+
+source_file="res://sfx/Tyre_slip_01.wav"
+dest_files=[ "res://.import/Tyre_slip_01.wav-8cf20cf42fc379e4a66e3d6b832b1f8b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
