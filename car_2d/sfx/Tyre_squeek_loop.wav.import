@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Tyre_squeek_loop.wav-e3f68d8eeea6a5691a655a8b12fc5db1.sample"
+
+[deps]
+
+source_file="res://sfx/Tyre_squeek_loop.wav"
+dest_files=[ "res://.import/Tyre_squeek_loop.wav-e3f68d8eeea6a5691a655a8b12fc5db1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
