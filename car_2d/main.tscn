@@ -15,16 +15,12 @@
 [ext_resource path="res://plot_gears.gd" type="Script" id=13]
 [ext_resource path="res://plot_slip.gd" type="Script" id=14]
 [ext_resource path="res://sfx/Engine_07.wav" type="AudioStream" id=15]
+[ext_resource path="res://sprites/progress.png" type="Texture" id=16]
+[ext_resource path="res://sprites/progress_over.png" type="Texture" id=17]
 
 [sub_resource type="Curve" id=1]
 max_value = 400.0
-_data = [ Vector2( 0, 261.818 ), 0.0, 375.944, 0, 0, Vector2( 0.732143, 400 ), 73.5586, 73.5586, 0, 0, Vector2( 1, 352.727 ), -301.684, 0.0, 0, 0 ]
-
-[sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+_data = [ Vector2( 0, 105.455 ), 0.0, 382.958, 0, 0, Vector2( 0.732143, 400 ), 73.5586, 73.5586, 0, 0, Vector2( 1, 352.727 ), -301.684, 0.0, 0, 0 ]
 
 [node name="main" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,7 +45,7 @@ position = Vector2( 503.595, 296.02 )
 current = false
 
 [node name="car_2d" type="Node2D" parent="."]
-position = Vector2( 514, 300 )
+position = Vector2( 500, 300 )
 script = ExtResource( 5 )
 engine_torque_curve = SubResource( 1 )
 
@@ -185,7 +181,7 @@ __meta__ = {
 }
 
 [node name="side_car" type="Node2D" parent="CanvasLayer"]
-position = Vector2( 513, 173 )
+position = Vector2( 513, 221 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 12 )
 car_path = NodePath("../../car_2d")
@@ -202,9 +198,6 @@ __meta__ = {
 show_behind_parent = true
 position = Vector2( -30, 7 )
 texture = ExtResource( 11 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="tyre_front" type="Sprite" parent="CanvasLayer/side_car"]
 show_behind_parent = true
@@ -214,30 +207,49 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="particle_rear" type="CPUParticles2D" parent="CanvasLayer/side_car"]
-position = Vector2( 25.5, 14 )
-amount = 22
-lifetime = 0.5
-direction = Vector2( -1, -0.25 )
-spread = 11.25
-gravity = Vector2( 0, 0 )
-initial_velocity = 20.0
-color_ramp = SubResource( 2 )
-
-[node name="particle_front" type="CPUParticles2D" parent="CanvasLayer/side_car"]
-position = Vector2( -30.5, 14 )
-amount = 22
-lifetime = 0.5
-direction = Vector2( -1, -0.25 )
-spread = 11.25
-gravity = Vector2( 0, 0 )
-initial_velocity = 20.0
-color_ramp = SubResource( 3 )
-
 [node name="contact_rear" type="Position2D" parent="CanvasLayer/side_car"]
 position = Vector2( -30.5, 14 )
 
 [node name="contact_front" type="Position2D" parent="CanvasLayer/side_car"]
 position = Vector2( 25.5, 14 )
+
+[node name="clutch" type="TextureProgress" parent="CanvasLayer/side_car"]
+margin_left = -39.5
+margin_top = -82.0
+margin_right = -29.5
+margin_bottom = 18.0
+rect_scale = Vector2( 0.5, 0.5 )
+value = 50.0
+texture_over = ExtResource( 17 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="brake" type="TextureProgress" parent="CanvasLayer/side_car"]
+margin_left = -31.5
+margin_top = -82.0
+margin_right = -21.5
+margin_bottom = 18.0
+rect_scale = Vector2( 0.5, 0.5 )
+value = 50.0
+texture_over = ExtResource( 17 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="throttle" type="TextureProgress" parent="CanvasLayer/side_car"]
+margin_left = -19.5
+margin_top = -82.0
+margin_right = -9.5
+margin_bottom = 18.0
+rect_scale = Vector2( 0.5, 0.5 )
+value = 50.0
+texture_over = ExtResource( 17 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
 
 [editable path="car"]

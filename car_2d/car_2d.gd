@@ -76,18 +76,26 @@ var total_force        := 0.0 #Niuton
 var drive_force        := 0.0 #Niuton
 var longitudal_force   := 0.0 #Niuton
 var engine_rpm_current := 0.0 #revolutions per minute
+var engine_rpm_target  := 0.0 #revolutions per minute
+var engine_rpm_form_wheels :=0.0
+var engine_rpm_differecne := 0.0
 var engine_angular_speed := 0.0 #radians/sec
-
 var slip_ratio         := 0.0
 
 # stering data
 var is_accelerate := false
 var is_brake      := false
+var is_clutch     := false
+var is_automatic_gearbox := true
 var gear_current := 0
+var gear_next    := 0 
 var throttle     := 0.0
 var brake        := 0.0
+var clutch       := 0.0
+
 var engine_effect :AudioEffect
 func _ready():
+	
 	calculate_rpm_at_max_torque()
 	
 	wheelbase = ($body/wheel_fl.global_position.x - $body/wheel_rl.global_position.x) 
@@ -111,10 +119,10 @@ func _process( delta ):
 	process_input()
 #	is_accelerate = true
 	process_stering( delta )
+	process_clutch( delta )
 	
 #	throttle = 0.01
 	calculate_weight_distribution()
-	
 	facing = Vector2( cos(orientation), sin(orientation) )
 	speed = velocity.length()
 	speed_longitudal = velocity.x
@@ -122,17 +130,14 @@ func _process( delta ):
 	drag_force         = get_drag_at_speed( speed )
 	rolling_resistance = get_rolling_resistance_at_speed( speed )
 
-	engine_torque = throttle * get_engine_torque_at_rpm( engine_rpm_current )
-	
 	engine_rpm_current   = get_engine_rpm( wheel_rpm )
-	$engine.pitch_scale  = max(1 +( (engine_rpm_current-engine_rpm_min) / engine_rpm_range) * 2, 0.01)
-	
+	$engine.pitch_scale  = max(0.1, 1 + ( (engine_rpm_current-engine_rpm_min) / engine_rpm_range) * 2)
 	engine_effect.set("pitch_scale", 1 - (max(0,(engine_rpm_current-engine_rpm_min)) / engine_rpm_range)*0.2)
 	
 #	var engine_rpm_current2 =  wheel_angular_speed * gear_box[gear_current] *differential_ratio * 60/TAU  
-
 	engine_angular_speed = engine_rpm_current / 60.0
 
+	engine_torque =  get_engine_torque_at_rpm( engine_rpm_current )
 	drive_torque = get_drive_torque()
 	brake_torque = get_brake_torque()
 	drive_force = drive_torque / wheel_radius
@@ -189,35 +194,48 @@ func print_debug_data():
 	$Label.text += "\nwheel s : %5.2f " % ( wheel_angular_speed )
 	$Label.text += "\nwheel a : %5.2f " % ( wheel_angular_acceleration )
 
-func calculate_weight_distribution():
-	weight_on_front_axle = axle_rear_distance / wheelbase * mass * gravity
-	weight_on_front_axle -= center_of_mass_height / wheelbase * mass * acceleration
-
-	weight_on_rear_axle  =  axle_front_distance / wheelbase * mass * gravity
-	weight_on_rear_axle  += center_of_mass_height / wheelbase * mass * acceleration
-	
-func get_drag_at_speed( speed_value ):
-	return 0.5 * drag_coefficient * front_area * air_density * speed_value * speed_value
-
 func get_engine_rpm (wheel_rpm_value):
 #	wheel_angular_speed * gear_box[gear_current] *differential_ratio * 60/TAU 
+	var engine_rpm_value := 0.0
 	if gear_current > 0:
-		return wheel_rpm_value * gear_box[gear_current] * differential_ratio
+		engine_rpm_target = throttle * engine_rpm_max
+		engine_rpm_form_wheels = wheel_rpm_value * gear_box[gear_current] * differential_ratio
+		engine_rpm_differecne  = engine_rpm_form_wheels - engine_rpm_target
+		engine_rpm_value  = clutch * engine_rpm_form_wheels
+		engine_rpm_value += (1 - clutch) * engine_rpm_target
+		return engine_rpm_value
 	else:
-		var rpm_value = lerp(engine_rpm_current, engine_rpm_min, 0.02)
+		engine_rpm_value = lerp(engine_rpm_current, engine_rpm_min, 0.02)
 		if is_accelerate:
 			if throttle * engine_rpm_range + engine_rpm_min > engine_rpm_current:
-				rpm_value = throttle * engine_rpm_range + engine_rpm_min
-		return rpm_value
+				engine_rpm_value = throttle * engine_rpm_range + engine_rpm_min
+		return engine_rpm_value
 
-func get_rolling_resistance_at_speed( speed_value ):
-	#mesure of tyre friction:
-	# 0.01 - 0.015 - car tyre on asphalt, 
-	# 0.002 - 0.005 - low resistance tubeless tires
-	rolling_coefficient = 0.005 + (1.0/tyre_pressure) * (0.01 + 0.0095 * pow(speed_value / 100.0, 2) )
-#	rolling_coefficient = 0.005 + (1.0/tyre_pressure) * (0.01 + 0.0095 * pow(speed_value*3.6/100.0, 2) )
-#	return rolling_coefficient * mass * gravity * speed_value
-	return rolling_coefficient * speed_value
+func get_engine_torque_at_rpm( rpm_value ):
+	rpm_value -= engine_rpm_min
+	rpm_value = float(rpm_value)/engine_rpm_range 
+	return engine_torque_curve.interpolate(rpm_value)
+
+func get_drive_torque_at_rpm( rpm_value, gear_value ):
+	return get_engine_torque_at_rpm( rpm_value ) * gear_box[gear_value] * differential_ratio * transimission_efficiecny
+
+func get_drive_torque():
+	if gear_current > 0:
+		var torque_value = 0.0
+		if engine_rpm_differecne > 0:
+			torque_value = get_drive_torque_at_rpm(engine_rpm_current, gear_current)
+		else:
+			torque_value = get_drive_torque_at_rpm(engine_rpm_target, gear_current)
+			torque_value -= get_drive_torque_at_rpm(engine_rpm_form_wheels, gear_current)
+		return torque_value
+#		if engine_rpm_current > engine_rpm_max :
+#			return 0
+#		elif engine_rpm_current < engine_rpm_min:
+#			return get_drive_torque_at_rpm(engine_rpm_min, gear_current) * engine_rpm_current/engine_rpm_min
+#		else:
+#			return get_drive_torque_at_rpm(engine_rpm_current, gear_current)
+	else:
+		return 0
 
 func get_tyre_force( slip, vertical_force ):
 	var vertical_load = 10 #B Stiffness - dry 10, wet 12, snow 5, ice 4
@@ -226,29 +244,29 @@ func get_tyre_force( slip, vertical_force ):
 	var curvature = 0.97 #E Curvature - dry 0.97, wet 1, snow 1, ice 1
 	var road_coefficient = 1.0
 	return vertical_force * peak * sin( shape * ( atan ( vertical_load * slip - curvature * ( vertical_load * slip - atan( vertical_load * slip ))))) * road_coefficient
-	
-func get_engine_torque_at_rpm( rpm_value ):
-	rpm_value -= engine_rpm_min
-	rpm_value = float(rpm_value)/engine_rpm_range 
-	return engine_torque_curve.interpolate(rpm_value) * throttle
-	
-func get_drive_torque_at_rpm( rpm_value, gear_value ):
-	return get_engine_torque_at_rpm( rpm_value ) * gear_box[gear_value] * differential_ratio * transimission_efficiecny
 
 func get_brake_torque():
 	return clamp(brake * tyre_grip_coefficient * weight_on_front_axle *  speed_longitudal, -weight_on_front_axle, weight_on_front_axle)
 
-func get_drive_torque():
-	if gear_current:
-		if engine_rpm_current > engine_rpm_max :
-			return 0
-		elif engine_rpm_current < engine_rpm_min:
-			return get_drive_torque_at_rpm(lerp( engine_rpm_current, engine_rpm_min, 0.1), gear_current) 
-		else:
-			return get_drive_torque_at_rpm(engine_rpm_current, gear_current)
-	else:
-		return 0
-	
+func get_drag_at_speed( speed_value ):
+	return 0.5 * drag_coefficient * front_area * air_density * speed_value * speed_value
+
+func get_rolling_resistance_at_speed( speed_value ):
+	#mesure of tyre friction:
+	# 0.01 - 0.015 - car tyre on asphalt, 
+	# 0.002 - 0.005 - low resistance tubeless tires
+	rolling_coefficient = 0.01 + (1.0/tyre_pressure) * (0.01 + 0.0095 * pow(speed_value / 100.0, 2) )
+#	rolling_coefficient = 0.005 + (1.0/tyre_pressure) * (0.01 + 0.0095 * pow(speed_value*3.6/100.0, 2) )
+#	return rolling_coefficient * mass * gravity * speed_value
+	return rolling_coefficient * 4 * wheel_rpm
+
+func calculate_weight_distribution():
+	weight_on_front_axle = axle_rear_distance / wheelbase * mass * gravity
+	weight_on_front_axle -= center_of_mass_height / wheelbase * mass * acceleration
+
+	weight_on_rear_axle  =  axle_front_distance / wheelbase * mass * gravity
+	weight_on_rear_axle  += center_of_mass_height / wheelbase * mass * acceleration
+
 func calculate_rpm_at_max_torque():
 	var max_value := 0.0
 	for i in 100:
@@ -256,6 +274,32 @@ func calculate_rpm_at_max_torque():
 		if engine_torque_curve.interpolate_baked(i_norm) > max_value:
 			max_value = engine_torque_curve.interpolate_baked(i_norm)
 			rpm_at_max_torque = i_norm * engine_rpm_range + engine_rpm_min
+
+func process_gearbox():
+	pass
+
+func process_clutch(delta):
+	if is_clutch: 
+		clutch -= 2.0 * delta
+		if clutch <= 0.0:
+			clutch = 0.0
+			gear_current = gear_next
+			is_clutch = false
+	elif clutch < 1.0:
+		clutch += 2.0 * delta
+		if clutch >= 1.0:
+			clutch = 1.0
+			
+func process_stering(delta):
+	if is_accelerate:
+		throttle = lerp(throttle, 1, 0.075)
+	else:
+		throttle = lerp(throttle, float(engine_rpm_min)/engine_rpm_max, 0.5)
+	
+	if is_brake:
+		brake = lerp(brake, 1, 0.1)
+	else:
+		brake = lerp(brake, 0, 0.5)
 
 func process_input():
 	if Input.is_action_pressed("ui_left"):
@@ -279,26 +323,24 @@ func process_input():
 
 	if Input.is_action_just_pressed("shift_up"):
 		if gear_current == (gear_max + 1):
-			gear_current = 0
+			gear_next = 0
+#			gear_current = 0
+			is_clutch = true
 		elif gear_current < gear_max:
-			gear_current += 1
+			gear_next += 1
+#			gear_current += 1
+			is_clutch = true
 			
 	if Input.is_action_just_pressed("shift_down"):
 		if gear_current == 0:
-			gear_current = gear_max + 1
+#			gear_current = gear_max + 1
+			gear_next = gear_max + 1
+			is_clutch = true
 		elif gear_current <= gear_max:
-			gear_current -= 1
+#			gear_current -= 1
+			gear_next -= 1
+			is_clutch = true
 
-func process_stering(delta):
-	if is_accelerate:
-		throttle = lerp(throttle, 1, 0.075)
-	else:
-		throttle = lerp(throttle, 0, 0.5)
-	
-	if is_brake:
-		brake = lerp(brake, 1, 0.1)
-	else:
-		brake = lerp(brake, 0, 0.5)
 
 func _draw():
 	var front = Vector2.ZERO

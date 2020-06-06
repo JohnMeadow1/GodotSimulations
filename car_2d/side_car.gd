@@ -37,13 +37,18 @@ func _process(delta):
 #		if !$particle_front.emitting:
 #			$particle_front.emitting = true
 	
-	
 	$body.rotation = (weight_front_to_rear_ratio - (car.weight_on_rear_axle / car.weight_on_front_axle)) / 31.4
 	$tyre_rear.rotate(wheel_speed_rear * delta)
 	$tyre_front.rotate(speed_to_wheel_rotation * delta)
+	$clutch.value   = car.clutch * 100
+	$throttle.value = car.throttle * 100
+	$brake.value    = car.brake * 100
+	
 	update()
+	
 
 func _draw():
+	draw_line(Vector2.ZERO, Vector2(car.drag_force, 0 ), Color.white, 3)
 	
 	draw_line(contact_front, contact_front - Vector2(car.brake_torque*0.01, 0), Color.white, 3)
 	draw_line(contact_rear, contact_rear + Vector2(car.drive_torque*0.01, 0), Color.white, 3)
