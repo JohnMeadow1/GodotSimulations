@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://sprites/track.png" type="Texture" id=2]
@@ -14,11 +14,13 @@
 [ext_resource path="res://side_car.gd" type="Script" id=12]
 [ext_resource path="res://plot_gears.gd" type="Script" id=13]
 [ext_resource path="res://plot_slip.gd" type="Script" id=14]
-[ext_resource path="res://sfx/Wrench.wav" type="AudioStream" id=15]
+[ext_resource path="res://sfx/Engine_07.wav" type="AudioStream" id=15]
+[ext_resource path="res://sprites/progress.png" type="Texture" id=16]
+[ext_resource path="res://sprites/progress_over.png" type="Texture" id=17]
 
 [sub_resource type="Curve" id=1]
 max_value = 400.0
-_data = [ Vector2( 0, 261.818 ), 0.0, 375.944, 0, 0, Vector2( 0.732143, 400 ), 73.5586, 73.5586, 0, 0, Vector2( 1, 352.727 ), -301.684, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 105.455 ), 0.0, 382.958, 0, 0, Vector2( 0.732143, 400 ), 73.5586, 73.5586, 0, 0, Vector2( 1, 352.727 ), -301.684, 0.0, 0, 0 ]
 
 [node name="main" type="Node2D"]
 script = ExtResource( 1 )
@@ -210,5 +212,44 @@ position = Vector2( -30.5, 14 )
 
 [node name="contact_front" type="Position2D" parent="CanvasLayer/side_car"]
 position = Vector2( 25.5, 14 )
+
+[node name="clutch" type="TextureProgress" parent="CanvasLayer/side_car"]
+margin_left = -39.5
+margin_top = -82.0
+margin_right = -29.5
+margin_bottom = 18.0
+rect_scale = Vector2( 0.5, 0.5 )
+value = 50.0
+texture_over = ExtResource( 17 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="brake" type="TextureProgress" parent="CanvasLayer/side_car"]
+margin_left = -31.5
+margin_top = -82.0
+margin_right = -21.5
+margin_bottom = 18.0
+rect_scale = Vector2( 0.5, 0.5 )
+value = 50.0
+texture_over = ExtResource( 17 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="throttle" type="TextureProgress" parent="CanvasLayer/side_car"]
+margin_left = -19.5
+margin_top = -82.0
+margin_right = -9.5
+margin_bottom = 18.0
+rect_scale = Vector2( 0.5, 0.5 )
+value = 50.0
+texture_over = ExtResource( 17 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
 
 [editable path="car"]
