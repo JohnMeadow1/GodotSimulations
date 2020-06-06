@@ -125,7 +125,7 @@ func _process( delta ):
 	engine_torque = throttle * get_engine_torque_at_rpm( engine_rpm_current )
 	
 	engine_rpm_current   = get_engine_rpm( wheel_rpm )
-	$engine.pitch_scale  = 1 +( (engine_rpm_current-engine_rpm_min) / engine_rpm_range) * 2
+	$engine.pitch_scale  = max(1 +( (engine_rpm_current-engine_rpm_min) / engine_rpm_range) * 2, 0.01)
 	
 	engine_effect.set("pitch_scale", 1 - (max(0,(engine_rpm_current-engine_rpm_min)) / engine_rpm_range)*0.2)
 	

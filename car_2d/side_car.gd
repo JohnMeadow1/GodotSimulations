@@ -8,16 +8,39 @@ onready var axle_rear     :Vector2 = $tyre_rear.position
 onready var contact_front :Vector2 = $contact_front.position 
 onready var contact_rear  :Vector2 = $contact_rear.position 
 
-
 var weight_front_to_rear_ratio := 0.0
+var speed_to_wheel_rotation := 0.0
+var wheel_speed_front := 0.0
+var wheel_speed_rear  := 0.0
+
+
 func _ready():
 	weight_front_to_rear_ratio = car.weight_on_rear_axle / car.weight_on_front_axle
 	
 func _process(delta):
+	speed_to_wheel_rotation = car.speed_longitudal / car.wheel_radius
+	wheel_speed_rear = car.wheel_angular_speed
+#	print (speed_to_wheel_rotation)
+#	print (wheel_speed_rear)
+
+	$particle_rear.set("initial_velocity", (wheel_speed_rear - speed_to_wheel_rotation) * 10)
+	$particle_front.set("initial_velocity", (wheel_speed_rear - speed_to_wheel_rotation) * 10)
+
+	if wheel_speed_rear > speed_to_wheel_rotation:
+		if $particle_rear.emitting:
+			$particle_rear.emitting  = false
+#		if $particle_front.emitting:
+#			$particle_front.emitting = false
+	else:
+		if !$particle_rear.emitting:
+			$particle_rear.emitting  = true
+#		if !$particle_front.emitting:
+#			$particle_front.emitting = true
 	
-	$body.rotation = (weight_front_to_rear_ratio - (car.weight_on_rear_axle / car.weight_on_front_axle)) / 10.0
-	$tyre_rear.rotate(car.wheel_angular_speed)
-	$tyre_front.rotate(car.wheel_angular_speed)
+	
+	$body.rotation = (weight_front_to_rear_ratio - (car.weight_on_rear_axle / car.weight_on_front_axle)) / 31.4
+	$tyre_rear.rotate(wheel_speed_rear * delta)
+	$tyre_front.rotate(speed_to_wheel_rotation * delta)
 	update()
 
 func _draw():
